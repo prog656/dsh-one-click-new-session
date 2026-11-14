@@ -70,11 +70,13 @@ node install.mjs --uninstall               # 卸载（保留会话数据）
 
 ## 配置
 
-全部是 `src/lib/client.js` 顶部的常量（`install.mjs` 安装时就地替换）：
+免工作区对话的目录默认是 `~/dsh-blank-sessions`。**由 host 端在启动时解析并写进客户端产物**，你不需要手改任何路径；想换目录，设环境变量 `DSH_BLANK_SESSION_DIR` 即可。
 
-| 常量 | 含义 | 安装后默认值 |
+`src/lib/client.js` 里剩下的只有界面文案，由 `install.mjs --lang` 本地化：
+
+| 配置项 | 含义 | 默认值 |
 | --- | --- | --- |
-| `SCRATCH_DIR` | 免工作区对话使用的绝对目录 | `~/dsh-blank-sessions` |
+| `DSH_BLANK_SESSION_DIR`（环境变量） | 免工作区对话使用的目录 | `~/dsh-blank-sessions` |
 | `SCRATCH_TITLE` | 侧边栏里显示的工作区组名 | `Quick Chats` / `临时对话` |
 | `LABEL`、`HINT`、`FAIL_LABEL` | 按钮文案 | 由 `--lang` 决定 |
 

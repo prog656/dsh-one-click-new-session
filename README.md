@@ -70,11 +70,13 @@ Every new chat lands in the same **Quick Chats** workspace; sessions themselves 
 
 ## Configuration
 
-All settings are the constants at the top of `src/lib/client.js` (edited in place by `install.mjs`):
+The scratch folder defaults to `~/dsh-blank-sessions`. The host half resolves it at startup and writes it into the client bundle, so you never edit a path by hand; set the `DSH_BLANK_SESSION_DIR` environment variable to use a different folder.
 
-| Constant | Meaning | Default after install |
+`src/lib/client.js` still carries the UI strings, which `install.mjs --lang` localises:
+
+| Setting | Meaning | Default |
 | --- | --- | --- |
-| `SCRATCH_DIR` | Absolute folder for workspace-free chats | `~/dsh-blank-sessions` |
+| `DSH_BLANK_SESSION_DIR` (env) | Folder used for workspace-free chats | `~/dsh-blank-sessions` |
 | `SCRATCH_TITLE` | Workspace group name in the sidebar | `Quick Chats` / `临时对话` |
 | `LABEL`, `HINT`, `FAIL_LABEL` | Button text | localised by `--lang` |
 
