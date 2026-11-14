@@ -38,7 +38,15 @@ const inert = sessionId === undefined || (hero && chipTitle === undefined);
 
 > 需要 Node.js 18+（DSH 本身依赖 Node）。Windows / macOS / Linux 均可。
 
-**方式 A — 一条命令**（在仓库根目录执行）：
+**方式 A — 插件管理器**（推荐，需要 `dsh` 命令）：
+
+```sh
+dsh plugin --profile desktop add dsh-one-click-new-session
+```
+
+跑 Web 版界面的话，把 `desktop` 换成 `web`。
+
+**方式 B — 从本仓库安装**（不需要命令行）：
 
 ```sh
 node install.mjs            # 英文界面

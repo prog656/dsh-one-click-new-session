@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [SemVer](https://semver.org/).
 
+## [1.1.1] - 2026-11-14
+
+### Docs
+
+- Published to npm as `dsh-one-click-new-session`. The README and both install sections now lead with `dsh plugin add`; the zip installer stays as the no-CLI path.
+
 ## [1.1.0] - 2026-11-14
 
 ### Changed
@@ -36,6 +42,7 @@ All notable changes to this project are documented here. Format follows [Keep a 
 - Verified end-to-end on the Windows desktop build; web profile not yet tested.
 - A dedicated workspace is required because DSH disables the composer for blank sessions without one. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
 
+[1.1.1]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.1
 [1.1.0]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.0
 [1.0.1]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.0.1
 [1.0.0]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.0.0

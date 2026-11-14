@@ -19,9 +19,10 @@ import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(HERE, "src");
-const PKG = "@local/dsh-one-click-new-session";
+const MANIFEST = JSON.parse(fs.readFileSync(path.join(SRC, "package.json"), "utf8"));
+const PKG = MANIFEST.name;
 const TOKEN = "__DSH_BLANK_SESSION_DIR__";
-const VERSION = JSON.parse(fs.readFileSync(path.join(SRC, "package.json"), "utf8")).version;
+const VERSION = MANIFEST.version;
 
 const I18N = {
 	en: {

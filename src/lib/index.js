@@ -50,7 +50,12 @@ const LOG_FILE = (() => {
 
 let tapCount = 0;
 
+// Diagnostics are opt-in: set DSH_BLANK_SESSION_DEBUG=1 to write
+// `<scratch>/host-debug.log`. Nothing is written in normal use.
+const DEBUG = process.env.DSH_BLANK_SESSION_DEBUG === "1";
+
 function log(message) {
+	if (!DEBUG) return;
 	try {
 		fs.appendFileSync(LOG_FILE, new Date().toISOString() + " " + message + "\n", "utf8");
 	} catch {
