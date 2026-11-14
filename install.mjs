@@ -96,24 +96,74 @@ function readProfile(dir) {
 	try {
 		const json = JSON.parse(fs.readFileSync(file, "utf8"));
 		if (!Array.isArray(json && json.dsh && json.dsh.profile && json.dsh.profile.bundles)) return null;
-		return { dir, file, json };
+		let real = dir;
+		try {
+			real = fs.realpathSync(dir);
+		} catch {
+			real = dir;
+		}
+		return { dir, real, file, json };
 	} catch {
 		return null;
 	}
 }
 
+/** True when this profile already registers the plugin. */
+function isInstalled(profile) {
+	const deps = (profile.json && profile.json.dependencies) || {};
+	const bundles = (profile.json && profile.json.dsh && profile.json.dsh.profile && profile.json.dsh.profile.bundles) || [];
+	return Boolean(deps[PKG]) || bundles.includes(PKG);
+}
+
 function findProfile(explicit) {
 	const candidates = profileCandidates(explicit);
+	const usable = [];
 	for (const dir of candidates) {
 		const found = readProfile(dir);
-		if (found) return found;
+		if (!found) continue;
+		// ~/.dsh/profiles/* are often junctions to the same real directory,
+		// so de-duplicate by realpath instead of the literal path.
+		if (usable.some((u) => u.real.toLowerCase() === found.real.toLowerCase())) continue;
+		usable.push(found);
 	}
-	console.error(t("找不到 DSH profile 目录。已尝试：", "Could not find a DSH profile. Tried:"));
-	candidates.forEach((d) => console.error("  - " + d));
-	console.error(t(
-		"\n请用 --profile <目录> 指定包含 package.json 且带 dsh.profile.bundles 的 profile。",
-		"\nPass --profile <dir> pointing at a profile whose package.json has dsh.profile.bundles."
-	));
+	if (usable.length === 0) {
+		console.error(t("找不到 DSH profile 目录。已尝试：", "Could not find a DSH profile. Tried:"));
+		candidates.forEach((d) => console.error("  - " + d));
+		console.error(t(
+			"\n请用 --profile <目录> 指定包含 package.json 且带 dsh.profile.bundles 的 profile。",
+			"\nPass --profile <dir> pointing at a profile whose package.json has dsh.profile.bundles."
+		));
+		process.exit(1);
+	}
+
+	// 1) A profile that already registers the plugin wins: this covers
+	//    reinstall / upgrade / uninstall, where picking another profile
+	//    would silently leave the real one untouched.
+	const installed = usable.filter(isInstalled);
+	if (installed.length === 1) return installed[0];
+	if (installed.length > 1) {
+		const pick = installed.find((p) => /desktop/i.test(p.real)) || installed[0];
+		console.log(t("有多个 profile 已注册本插件，使用: ", "Several profiles already register the plugin; using: ") + pick.dir);
+		return pick;
+	}
+
+	// 2) Exactly one profile on this machine.
+	if (usable.length === 1) return usable[0];
+
+	// 3) Several profiles, none of them registered: prefer the desktop one.
+	const desktop = usable.find((p) => /desktop/i.test(p.real));
+	if (desktop) {
+		console.log(t(
+			"检测到 " + usable.length + " 个 profile（都未安装本插件），已选择 desktop。如需其他，请用 --profile 指定。",
+			"Found " + usable.length + " profiles (none has the plugin); using desktop. Pass --profile to pick another."
+		));
+		return desktop;
+	}
+
+	// 4) Ambiguous: refuse rather than guess.
+	console.error(t("检测到多个 profile，但无法判断该装到哪个：", "Found several profiles and cannot decide which one to use:"));
+	usable.forEach((p) => console.error("  - " + p.dir));
+	console.error(t("请用 --profile <目录> 指定。", "Pass --profile <dir>."));
 	process.exit(1);
 }
 
