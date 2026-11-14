@@ -38,15 +38,23 @@ const inert = sessionId === undefined || (hero && chipTitle === undefined);
 
 > 需要 Node.js 18+（DSH 本身依赖 Node）。Windows / macOS / Linux 均可。
 
-**方式 A — 插件管理器**（推荐，需要 `dsh` 命令）：
+**方式 A — 下载 zip 安装**（桌面版就走这条）：
+
+```sh
+# 从 Releases 下载 dsh-one-click-new-session-vX.Y.Z.zip，解压，然后在解压出的文件夹里：
+node install.mjs            # 英文界面
+node install.mjs --lang zh  # 中文界面
+```
+
+Windows 上直接**双击 `install.bat`** 即可（中文界面）。
+
+**方式 B — 插件管理器**（只有自带 `dsh` 命令的环境才用；桌面版没有）：
 
 ```sh
 dsh plugin --profile desktop add dsh-one-click-new-session
 ```
 
 跑 Web 版界面的话，把 `desktop` 换成 `web`。
-
-**方式 B — 从本仓库安装**（不需要命令行）：
 
 ```sh
 node install.mjs            # 英文界面

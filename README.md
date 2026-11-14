@@ -38,15 +38,23 @@ This plugin fixes both halves: an entry point that is independent of the selecte
 
 > Requires Node.js 18+ (DSH already depends on Node). Windows / macOS / Linux.
 
-**Option A — plugin manager** (recommended, if you have the `dsh` CLI):
+**Option A — zip installer** (this is the path for the desktop app):
+
+```sh
+# download dsh-one-click-new-session-vX.Y.Z.zip from Releases, unzip it, then inside:
+node install.mjs            # English UI
+node install.mjs --lang zh  # Chinese UI
+```
+
+On Windows you can simply **double-click `install.bat`** (Chinese UI).
+
+**Option B — plugin manager** (only if your setup ships the `dsh` CLI; the desktop app does not):
 
 ```sh
 dsh plugin --profile desktop add dsh-one-click-new-session
 ```
 
 Use `--profile web` instead of `desktop` when you run the Web UI.
-
-**Option B — from this repository** (no CLI needed):
 
 ```sh
 node install.mjs            # English UI
