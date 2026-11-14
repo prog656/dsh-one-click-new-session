@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [SemVer](https://semver.org/).
 
+## [1.0.1] - 2026-11-14
+
+### Fixed
+
+- Installer picked the wrong profile on machines that have both a `web` and a `desktop` profile — it stopped at the first readable one and wrote there, so the plugin looked installed but never loaded. It now prefers a profile that already registers the plugin, then `desktop`, and refuses to guess when several candidates remain. Found and verified on a real machine with two profiles.
+
 ## [1.0.0] - 2026-11-14
 
 ### Added
@@ -18,4 +24,5 @@ All notable changes to this project are documented here. Format follows [Keep a 
 - Verified end-to-end on the Windows desktop build; web profile not yet tested.
 - A dedicated workspace is required because DSH disables the composer for blank sessions without one. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
 
+[1.0.1]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.0.1
 [1.0.0]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.0.0
