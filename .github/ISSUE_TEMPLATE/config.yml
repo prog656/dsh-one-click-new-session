@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Installation help
+    url: https://github.com/prog656/dsh-one-click-new-session/blob/main/docs/INSTALL.md
+    about: Read the install and troubleshooting guide before opening an issue.
+  - name: How it works
+    url: https://github.com/prog656/dsh-one-click-new-session/blob/main/docs/HOW-IT-WORKS.md
+    about: Technical background on the DSH UI constraints.

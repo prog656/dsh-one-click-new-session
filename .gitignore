@@ -1,0 +1,22 @@
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# Runtime
+node_modules/
+*.log
+npm-debug.log*
+.env
+.env.local
+
+# Build / release artefacts (keep the source tree clean)
+dist/
+*.zip
+*.tar.gz
+
+# Local install state — never commit machine-specific paths
+install.local.json
+*.local.js

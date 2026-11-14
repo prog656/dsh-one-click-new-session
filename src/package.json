@@ -1,0 +1,46 @@
+{
+  "name": "@local/dsh-one-click-new-session",
+  "description": "One click opens a blank DSH conversation without picking a workspace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis-plugin",
+    "chat",
+    "workspace"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prog656/dsh-one-click-new-session.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prog656/dsh-one-click-new-session/issues"
+  },
+  "homepage": "https://github.com/prog656/dsh-one-click-new-session#readme",
+  "dsh": {
+    "engines": {
+      "dsh": ">=0.1.7-rc.1"
+    },
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-workspace",
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}
