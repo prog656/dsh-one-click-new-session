@@ -10,7 +10,47 @@ window.__ModuleLoader__.load({
 		// target machine, and can localise the four labels with --lang zh.
 		// If you install manually, edit these lines yourself.
 		// ---------------------------------------------------------------------
-		const SCRATCH_DIR = "__DSH_BLANK_SESSION_DIR__";
+		// install.mjs rewrites this literal for zip installs. When the package is
+		// installed from a registry the literal stays untouched, and the host half
+		// supplies the real path through a <meta> tag it injects into index.html
+		// (inline <script> is blocked by the app's CSP).
+		const SCRATCH_DIR_OVERRIDE = "__DSH_BLANK_SESSION_DIR__";
+		const SCRATCH_CONFIG_URLS = [
+			"/plugins/@local/dsh-one-click-new-session/config.json",
+			"/plugins/@local/dsh-one-click-new-session/lib/config.json"
+		];
+
+		/**
+		 * Resolve the scratch directory. Transports, in order:
+		 * 1. config.json written next to the bundle by the host half — immune to
+		 *    CSP and to index.html caching;
+		 * 2. a <meta> tag the host injects into index.html;
+		 * 3. a window global (legacy).
+		 * install.mjs still wins for zip installs by rewriting the literal above.
+		 * Resolved per click (not once at load) so DOM changes cannot race it.
+		 */
+		async function resolveScratchDir() {
+			if (SCRATCH_DIR_OVERRIDE.indexOf("__DSH_BLANK") !== 0) return SCRATCH_DIR_OVERRIDE;
+			for (const url of SCRATCH_CONFIG_URLS) {
+				try {
+					const response = await fetch(url, { cache: "no-store" });
+					if (response && response.ok) {
+						const body = await response.json();
+						if (body && typeof body.scratchDir === "string" && body.scratchDir !== "") return body.scratchDir;
+					}
+				} catch (error) {
+					/* try the next transport */
+				}
+			}
+			try {
+				const meta = document.querySelector('meta[name="dsh-blank-dir"]');
+				const value = meta && meta.getAttribute("content");
+				if (value) return value;
+			} catch (error) {
+				/* ignore */
+			}
+			return (typeof window !== "undefined" && window.__DSH_BLANK_DIR__) || "";
+		}
 		const SCRATCH_TITLE = "Quick Chats";
 		const LABEL = "New chat";
 		const HINT = "New chat (no workspace needed)";
@@ -85,12 +125,13 @@ window.__ModuleLoader__.load({
 				 * by path and returns the existing workspace (created:false).
 				 */
 				async function ensureScratchWorkspace() {
-					if (SCRATCH_DIR.indexOf("__DSH_BLANK") === 0) {
-						throw new Error("SCRATCH_DIR is not configured. Run install.mjs or edit lib/client.js.");
+					const dir = await resolveScratchDir();
+					if (!dir) {
+						throw new Error("Scratch directory unresolved: config.json, meta tag and window global were all empty.");
 					}
 					const snapshot = ctx.workspaces.list.getSnapshot();
 					const items = Array.isArray(snapshot && snapshot.items) ? snapshot.items : [];
-					const found = items.find((item) => normPath(item.path) === normPath(SCRATCH_DIR));
+					const found = items.find((item) => normPath(item.path) === normPath(dir));
 					if (found !== undefined) {
 						if (found.title !== SCRATCH_TITLE) {
 							try {
@@ -101,9 +142,9 @@ window.__ModuleLoader__.load({
 						}
 						return found.workspaceId;
 					}
-					const created = await ctx.workspaces.create({ path: SCRATCH_DIR });
+					const created = await ctx.workspaces.create({ path: dir });
 					if (created === undefined || created === null || created.workspaceId === undefined) {
-						throw new Error("Could not create scratch workspace: " + SCRATCH_DIR);
+						throw new Error("Could not create scratch workspace: " + dir);
 					}
 					if (created.title !== SCRATCH_TITLE) {
 						try {
@@ -173,7 +214,7 @@ window.__ModuleLoader__.load({
 								onClick
 							},
 							h(PlusIcon),
-							wide ? h("span", { className: "dsh-blank-new__label" }, failed === "" ? LABEL : FAIL_LABEL) : null
+							wide ? h("span", { className: "dsh-blank-new__label" }, failed === "" ? LABEL : FAIL_LABEL + ": " + failed) : null
 						)
 					);
 				}

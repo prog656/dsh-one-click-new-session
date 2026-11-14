@@ -172,7 +172,7 @@ function renderClient(code, scratchPosix) {
 	if (!code.includes(TOKEN)) {
 		throw new Error("src/lib/client.js is missing " + TOKEN + " — the template may have been modified.");
 	}
-	let out = code.replace(TOKEN, () => scratchPosix);
+	let out = code.split(TOKEN).join(scratchPosix);
 	for (const [key, value] of Object.entries(I18N[lang])) {
 		const re = new RegExp("(const " + key + " = )\"[^\"]*\"(;)");
 		out = out.replace(re, (_m, head, tail) => head + JSON.stringify(value) + tail);
