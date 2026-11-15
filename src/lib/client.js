@@ -1,5 +1,5 @@
 window.__ModuleLoader__.load({
-	id: "@local/dsh-one-click-new-session",
+	id: "dsh-one-click-new-session",
 	factory: (require) => {
 		const React = require("react");
 		const h = React.createElement;
