@@ -5,7 +5,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![npm](https://img.shields.io/npm/v/dsh-one-click-new-session)](https://www.npmjs.com/package/dsh-one-click-new-session)
-[![Release](https://img.shields.io/badge/release-v1.1.4-green.svg)](https://github.com/prog656/dsh-one-click-new-session/releases)
+[![Release](https://img.shields.io/github/v/release/prog656/dsh-one-click-new-session?label=release)](https://github.com/prog656/dsh-one-click-new-session/releases)
 [![DSH](https://img.shields.io/badge/DSH-%3E%3D0.1.7--rc.1-orange.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
