@@ -50,7 +50,7 @@
 
 ## 2. 把占位用户名换成你自己的（**别跳过**）
 
-仓库里有几处链接写的是 `YOUR_USERNAME`（徽章、issue 链接、`src/package.json`）。不替换的话，别人点徽章会跳到 404。
+仓库里有几处链接写的是 `YOUR_USERNAME`（徽章、issue 链接、`package.json`）。不替换的话，别人点徽章会跳到 404。
 
 **方式一（推荐，不用碰命令行）**：把用户名发给帮你打包的人，直接替换好并重新打包 zip，你从第 3 步开始做。
 
@@ -69,7 +69,7 @@ node setup-username.mjs 你的GitHub用户名
 
 它会扫描全部文本文件并替换，最后打印改了几个文件。
 
-【验收标准】输出里显示 `Replaced in 5 files`，且 `README.md`、`CHANGELOG.md`、`src/package.json`、`.github/ISSUE_TEMPLATE/config.yml` 里的链接都变成了你的用户名。（`docs/GITHUB-GUIDE.md` 和脚本自身里剩下的词是教学示例，脚本已特意跳过，不用管。）
+【验收标准】输出里显示 `Replaced in 5 files`，且 `README.md`、`CHANGELOG.md`、`package.json`、`.github/ISSUE_TEMPLATE/config.yml` 里的链接都变成了你的用户名。（`docs/GITHUB-GUIDE.md` 和脚本自身里剩下的词是教学示例，脚本已特意跳过，不用管。）
 
 ---
 

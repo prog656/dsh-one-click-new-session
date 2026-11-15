@@ -18,7 +18,7 @@ import os from "node:os";
 import { fileURLToPath } from "node:url";
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
-const SRC = path.join(HERE, "src");
+const SRC = HERE;
 const MANIFEST = JSON.parse(fs.readFileSync(path.join(SRC, "package.json"), "utf8"));
 const PKG = MANIFEST.name;
 const TOKEN = "__DSH_BLANK_SESSION_DIR__";
@@ -168,10 +168,10 @@ function findProfile(explicit) {
 	process.exit(1);
 }
 
-/** Render src/lib/client.js for the target machine. */
+/** Render lib/client.js for the target machine. */
 function renderClient(code, scratchPosix) {
 	if (!code.includes(TOKEN)) {
-		throw new Error("src/lib/client.js is missing " + TOKEN + " — the template may have been modified.");
+		throw new Error("lib/client.js is missing " + TOKEN + " — the template may have been modified.");
 	}
 	let out = code.split(TOKEN).join(scratchPosix);
 	for (const [key, value] of Object.entries(I18N[lang])) {

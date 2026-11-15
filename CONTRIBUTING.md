@@ -18,8 +18,8 @@ Open an issue using the bug template and include: OS, DSH version, install metho
 ## Sending a change
 
 1. Fork the repo, create a branch (`fix/scratch-path`, `feat/per-chat-folder`, ...).
-2. Keep the plugin dependency-free. `src/lib/client.js` runs in the browser renderer — no Node built-ins there.
-3. If you change `src/lib/client.js`, keep the `__DSH_BLANK_SESSION_DIR__` placeholder and the four label constants at the top; `install.mjs` relies on their exact shape.
+2. Keep the plugin dependency-free. `lib/client.js` runs in the browser renderer — no Node built-ins there.
+3. If you change `lib/client.js`, keep the `__DSH_BLANK_SESSION_DIR__` placeholder and the four label constants at the top; `install.mjs` relies on their exact shape.
 4. Update `CHANGELOG.md` (under "Unreleased") and the relevant doc.
 5. Verify locally: `node --check install.mjs`, `node install.mjs --dry-run --profile <temp-dir>`, then a real install and a click-through in DSH.
 6. Open a PR describing **what changed and why**. Link the issue if there is one.

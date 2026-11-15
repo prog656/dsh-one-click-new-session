@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [SemVer](https://semver.org/).
 
+## [1.1.3] - 2026-11-15
+
+### Changed
+
+- The package now lives at the repository root: `package.json`, `lib/` and `cordis.patch.yml` moved out of `src/`. Directory listings that validate `dsh.bundle` at the repository root can now resolve this plugin, and `dsh plugin add github:prog656/dsh-one-click-new-session` installs straight from the repo.
+
 ## [1.1.2] - 2026-11-15
 
 ### Fixed
@@ -56,6 +62,7 @@ All notable changes to this project are documented here. Format follows [Keep a 
 - Verified end-to-end on the Windows desktop build; web profile not yet tested.
 - A dedicated workspace is required because DSH disables the composer for blank sessions without one. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
 
+[1.1.3]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.3
 [1.1.2]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.2
 [1.1.1]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.1
 [1.1.0]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.0
