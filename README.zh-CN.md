@@ -4,11 +4,22 @@
 > [English README](README.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/release-v1.0.0-green.svg)](https://github.com/prog656/dsh-one-click-new-session/releases)
+[![npm](https://img.shields.io/npm/v/dsh-one-click-new-session)](https://www.npmjs.com/package/dsh-one-click-new-session)
+[![Release](https://img.shields.io/badge/release-v1.1.4-green.svg)](https://github.com/prog656/dsh-one-click-new-session/releases)
 [![DSH](https://img.shields.io/badge/DSH-%3E%3D0.1.7--rc.1-orange.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ![一键进入空白对话](docs/demo.svg)
+
+---
+
+## 三步装上
+
+1. 去 [Releases](https://github.com/prog656/dsh-one-click-new-session/releases/latest) 下载最新的 zip。
+2. 解压，**双击 `install.bat`**（Windows），或运行 `node install.mjs`。
+3. 完全退出 DSH 再打开，侧边栏底部会出现「新建对话」。
+
+> 需要 Node.js 18+。没装的话先去 [nodejs.org](https://nodejs.org) 装 LTS 版，然后重复第 2 步。
 
 ---
 

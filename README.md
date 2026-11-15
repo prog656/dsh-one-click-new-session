@@ -4,11 +4,22 @@
 > [中文文档](README.zh-CN.md)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/release-v1.0.0-green.svg)](https://github.com/prog656/dsh-one-click-new-session/releases)
+[![npm](https://img.shields.io/npm/v/dsh-one-click-new-session)](https://www.npmjs.com/package/dsh-one-click-new-session)
+[![Release](https://img.shields.io/badge/release-v1.1.4-green.svg)](https://github.com/prog656/dsh-one-click-new-session/releases)
 [![DSH](https://img.shields.io/badge/DSH-%3E%3D0.1.7--rc.1-orange.svg)](https://github.com/deepseek-ai/deepseek-harness)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ![One click to a blank chat](docs/demo.svg)
+
+---
+
+## Quick start
+
+1. Download the latest zip from [Releases](https://github.com/prog656/dsh-one-click-new-session/releases/latest).
+2. Unzip it, then **double-click `install.bat`** (Windows) or run `node install.mjs`.
+3. Fully quit DSH and reopen it — a "New chat" button appears at the bottom of the sidebar.
+
+> Needs Node.js 18+. No Node yet? Install the LTS build from [nodejs.org](https://nodejs.org) first, then repeat step 2.
 
 ---
 

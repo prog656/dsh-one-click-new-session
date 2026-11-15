@@ -2,6 +2,13 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [SemVer](https://semver.org/).
 
+## [1.1.4] - 2026-11-15
+
+### Docs
+
+- The README now opens with a three-step quick start, so first-time visitors no longer scroll past the design rationale before learning how to install.
+- Badges show the live npm version instead of a hardcoded one.
+
 ## [1.1.3] - 2026-11-15
 
 ### Changed
@@ -62,6 +69,7 @@ All notable changes to this project are documented here. Format follows [Keep a 
 - Verified end-to-end on the Windows desktop build; web profile not yet tested.
 - A dedicated workspace is required because DSH disables the composer for blank sessions without one. See [docs/HOW-IT-WORKS.md](docs/HOW-IT-WORKS.md).
 
+[1.1.4]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.4
 [1.1.3]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.3
 [1.1.2]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.2
 [1.1.1]: https://github.com/prog656/dsh-one-click-new-session/releases/tag/v1.1.1
