@@ -7,6 +7,7 @@
 [![npm](https://img.shields.io/npm/v/dsh-one-click-new-session)](https://www.npmjs.com/package/dsh-one-click-new-session)
 [![Release](https://img.shields.io/github/v/release/prog656/dsh-one-click-new-session?label=release)](https://github.com/prog656/dsh-one-click-new-session/releases)
 [![DSH](https://img.shields.io/badge/DSH-%3E%3D0.1.7--rc.1-orange.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![awesome-dsh-plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/prog656/dsh-one-click-new-session/)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ![一键进入空白对话](docs/demo.svg)
@@ -20,6 +21,8 @@
 3. 完全退出 DSH 再打开，侧边栏底部会出现「新建对话」。
 
 > 需要 Node.js 18+。没装的话先去 [nodejs.org](https://nodejs.org) 装 LTS 版，然后重复第 2 步。
+
+> 已收录进 [awesome-dsh-plugin](https://awesome-dsh-plugin.com/p/prog656/dsh-one-click-new-session/) 社区清单（**UI Enhancements** 分类）。
 
 ---
 

@@ -2,6 +2,12 @@
 
 All notable changes to this project are documented here. Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), versions follow [SemVer](https://semver.org/).
 
+## [Unreleased]
+
+### Docs
+
+- Both READMEs now carry the `awesome-dsh-plugin` listing badge and a line pointing at the catalog entry under UI Enhancements, so a first-time visitor can see the plugin has been reviewed and merged into the community list (PR #15479).
+
 ## [1.1.5] - 2026-11-15
 
 ### Changed

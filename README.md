@@ -7,6 +7,7 @@
 [![npm](https://img.shields.io/npm/v/dsh-one-click-new-session)](https://www.npmjs.com/package/dsh-one-click-new-session)
 [![Release](https://img.shields.io/github/v/release/prog656/dsh-one-click-new-session?label=release)](https://github.com/prog656/dsh-one-click-new-session/releases)
 [![DSH](https://img.shields.io/badge/DSH-%3E%3D0.1.7--rc.1-orange.svg)](https://github.com/deepseek-ai/deepseek-harness)
+[![awesome-dsh-plugin](https://awesome-dsh-plugin.com/badge.svg)](https://awesome-dsh-plugin.com/p/prog656/dsh-one-click-new-session/)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 ![One click to a blank chat](docs/demo.svg)
@@ -20,6 +21,8 @@
 3. Fully quit DSH and reopen it — a "New chat" button appears at the bottom of the sidebar.
 
 > Needs Node.js 18+. No Node yet? Install the LTS build from [nodejs.org](https://nodejs.org) first, then repeat step 2.
+
+> Listed in the [awesome-dsh-plugin](https://awesome-dsh-plugin.com/p/prog656/dsh-one-click-new-session/) community catalog under **UI Enhancements**.
 
 ---
 
