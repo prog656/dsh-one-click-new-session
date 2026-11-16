@@ -62,22 +62,7 @@ node install.mjs --lang zh  # 中文界面
 
 Windows 上直接**双击 `install.bat`** 即可（中文界面）。
 
-**方式 B — 插件管理器**（只有自带 `dsh` 命令的环境才用；桌面版没有）：
-
-```sh
-dsh plugin --profile desktop add dsh-one-click-new-session
-```
-
-跑 Web 版界面的话，把 `desktop` 换成 `web`。
-
-```sh
-node install.mjs            # 英文界面
-node install.mjs --lang zh  # 中文界面
-```
-
-Windows 用户直接**双击 `install.bat`** 即可（中文界面）。
-
-安装脚本会自动探测 DSH profile、创建 `~/dsh-blank-sessions`、把四个插件文件写进 `node_modules/@local/dsh-one-click-new-session`、并在 profile 的 `package.json` 里注册 bundle。
+安装脚本会自动探测 DSH profile、创建 `~/dsh-blank-sessions`、把四个插件文件写进 `node_modules/dsh-one-click-new-session`、并在 profile 的 `package.json` 里注册 bundle。
 
 ```sh
 node install.mjs --dry-run                  # 预演，不写任何文件
@@ -86,7 +71,15 @@ node install.mjs --dir /path/to/scratch
 node install.mjs --uninstall               # 卸载（保留会话数据）
 ```
 
-**方式 B — 手动安装**：见 [docs/INSTALL.md](docs/INSTALL.md#手动安装)。
+**方式 B — 插件管理器**（只有自带 `dsh` 命令的环境才用；桌面版没有）：
+
+```sh
+dsh plugin --profile desktop add dsh-one-click-new-session
+```
+
+跑 Web 版界面的话，把 `desktop` 换成 `web`。
+
+**方式 C — 手动安装**：见 [docs/INSTALL.md](docs/INSTALL.md#手动安装)。
 
 装完**完全退出并重启 DSH**。排障见 [docs/INSTALL.md](docs/INSTALL.md)。
 

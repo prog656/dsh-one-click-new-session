@@ -62,22 +62,7 @@ node install.mjs --lang zh  # Chinese UI
 
 On Windows you can simply **double-click `install.bat`** (Chinese UI).
 
-**Option B — plugin manager** (only if your setup ships the `dsh` CLI; the desktop app does not):
-
-```sh
-dsh plugin --profile desktop add dsh-one-click-new-session
-```
-
-Use `--profile web` instead of `desktop` when you run the Web UI.
-
-```sh
-node install.mjs            # English UI
-node install.mjs --lang zh  # Chinese UI
-```
-
-On Windows you can simply **double-click `install.bat`** (Chinese UI).
-
-The installer auto-detects your DSH profile, creates `~/dsh-blank-sessions`, writes the four plugin files into `node_modules/@local/dsh-one-click-new-session`, and registers the bundle in the profile's `package.json`.
+The installer auto-detects your DSH profile, creates `~/dsh-blank-sessions`, writes the four plugin files into `node_modules/dsh-one-click-new-session`, and registers the bundle in the profile's `package.json`.
 
 ```sh
 node install.mjs --dry-run                  # preview, writes nothing
@@ -86,7 +71,15 @@ node install.mjs --dir /path/to/scratch
 node install.mjs --uninstall
 ```
 
-**Option B — manual**: see [docs/INSTALL.md](docs/INSTALL.md#manual-installation).
+**Option B — plugin manager** (only if your setup ships the `dsh` CLI; the desktop app does not):
+
+```sh
+dsh plugin --profile desktop add dsh-one-click-new-session
+```
+
+Use `--profile web` instead of `desktop` when you run the Web UI.
+
+**Option C — manual**: see [docs/INSTALL.md](docs/INSTALL.md#手动安装).
 
 Then **fully quit and restart DSH**. See [docs/INSTALL.md](docs/INSTALL.md) for troubleshooting.
 

@@ -6,7 +6,7 @@ Thanks for taking the time. Bug reports, docs fixes and small PRs are all welcom
 
 - This is an **unofficial** plugin. Don't paste DSH source code, `app.asar` contents, credentials, or personal paths into issues or PRs.
 - Repository layout:
-  - `src/` — the actual plugin (4 files, this is what gets installed)
+  - `lib/`, `package.json`, `cordis.patch.yml` — the actual plugin, at the repository root (this is what gets installed)
   - `install.mjs` / `install.bat` — installer
   - `docs/` — install, architecture, GitHub guide, promotion notes
   - `.github/` — issue & PR templates

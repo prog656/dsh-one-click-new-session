@@ -86,8 +86,7 @@ function profileCandidates(explicit) {
 		process.env.DSH_PROFILE,
 		path.join(home, ".dsh", "profiles", "web"),
 		path.join(home, ".dsh", "profiles", "desktop"),
-		path.join(appdata, "@deepseek-ai", "dsh-desktop", "profiles", "desktop"),
-		"D:/Program Files (x86)/deepseek harness skins/dsh-home/profiles/desktop"
+		path.join(appdata, "@deepseek-ai", "dsh-desktop", "profiles", "desktop")
 	].filter(Boolean))];
 }
 

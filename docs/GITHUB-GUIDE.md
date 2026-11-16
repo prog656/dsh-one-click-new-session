@@ -95,7 +95,7 @@ node setup-username.mjs 你的GitHub用户名
 3. 等进度条走完，下面 **Commit changes** 的标题填 `Initial release: one-click new session`。
 4. 点 **Commit changes**。
 
-【验收标准】回到仓库首页，`README.md` 的内容直接渲染在文件列表下方，能看到徽章和示意图；左侧文件列表里有 `LICENSE`、`src/`、`docs/`、`install.mjs`。
+【验收标准】回到仓库首页，`README.md` 的内容直接渲染在文件列表下方，能看到徽章和示意图；左侧文件列表里有 `LICENSE`、`lib/`、`docs/`、`install.mjs`。
 
 > **漏了 `.github` 怎么办**：不用重传。仓库首页 → **Add file** → **Create new file** → 文件名框输入 `.github/ISSUE_TEMPLATE/bug_report.md`（输入斜杠会自动建目录）→ 把本地同名文件的内容粘进去 → **Commit changes**。另外两个模板同理，路径分别是 `.github/ISSUE_TEMPLATE/feature_request.md`、`.github/ISSUE_TEMPLATE/config.yml`、`.github/PULL_REQUEST_TEMPLATE.md`。
 

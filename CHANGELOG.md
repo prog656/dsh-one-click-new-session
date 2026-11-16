@@ -7,6 +7,14 @@ All notable changes to this project are documented here. Format follows [Keep a 
 ### Docs
 
 - Both READMEs now carry the `awesome-dsh-plugin` listing badge and a line pointing at the catalog entry under UI Enhancements, so a first-time visitor can see the plugin has been reviewed and merged into the community list (PR #15479).
+- The install sections had two steps labelled "Option B" and repeated the `install.mjs` block under the plugin-manager path. The three paths are now A (zip), B (plugin manager), C (manual).
+- `docs/INSTALL.md` still described the retired `@local/` package name and the removed `src/` layout, and told users to edit a `SCRATCH_DIR` constant that no longer exists. It now documents the root layout and explains that the host half bakes the path itself.
+- `CONTRIBUTING.md` and `docs/GITHUB-GUIDE.md` describe the repository-root layout instead of `src/`.
+
+### Fixed
+
+- The READMEs claimed the installer writes into `node_modules/@local/...`; the real target is `node_modules/dsh-one-click-new-session`.
+- Removed stale `@local/` paths from the unused `config.json` fallback in `lib/client.js`, and corrected the header comment that still described the abandoned `<meta>` transport.
 
 ## [1.1.5] - 2026-11-15
 

@@ -14,13 +14,13 @@
 - `~/.dsh/profiles/web`
 - `~/.dsh/profiles/desktop`
 - `%APPDATA%/@deepseek-ai/dsh-desktop/profiles/desktop`
-- 第三方桌面端，例如 `D:/Program Files (x86)/deepseek harness skins/dsh-home/profiles/desktop`
+- 第三方桌面端自定义的目录，例如 `D:/Apps/deepseek-harness/profiles/desktop`
 
 ---
 
 ## 自动安装
 
-> **注意：如果你就是这台机器的作者，插件已经装好了，不用再装。** 再跑一次会被"已安装"保护拦下（这是故意的）。想覆盖测试加 `--force`，但会把按钮文案改成英文版。
+> **重复安装会被拦下。** 安装器检测到该 profile 已注册本插件时会直接停止并把原因打印出来（这是故意的，防止误覆盖现有配置）。确需覆盖加 `--force`；按钮文案会按 `--lang` 指定的语言重写，不带参数时是英文。
 
 在仓库根目录：
 
@@ -45,7 +45,7 @@ Windows 双击 `install.bat` 等价于 `node install.mjs --lang zh`。
 
 1. 探测 / 校验 profile 目录；
 2. 创建 scratch 目录；
-3. 把 `src/` 四个文件写到 `profile/node_modules/@local/dsh-one-click-new-session/`，其中 `lib/client.js` 的 `__DSH_BLANK_SESSION_DIR__` 被替换成你的真实绝对路径；
+3. 把包的四个文件写到 `profile/node_modules/dsh-one-click-new-session/`，并把本机真实的 scratch 路径替换进 `lib/client.js` 的 `__DSH_BLANK_SESSION_DIR__` 占位符；
 4. 在 `profile/package.json` 里加一条 `dependencies` 和一条 `dsh.profile.bundles`。
 
 **装完必须完全退出并重启 DSH**（不是刷新页面）。DSH 启动时才读 bundle 名册。
@@ -62,10 +62,10 @@ Windows 双击 `install.bat` 等价于 `node install.mjs --lang zh`。
 
 **2. 复制插件文件**
 
-把 `src/` 里的四个文件复制到：
+把仓库根目录下这四个文件复制到：
 
 ```
-<profile>/node_modules/@local/dsh-one-click-new-session/
+<profile>/node_modules/dsh-one-click-new-session/
 ├── package.json
 ├── cordis.patch.yml
 └── lib/
@@ -73,21 +73,11 @@ Windows 双击 `install.bat` 等价于 `node install.mjs --lang zh`。
     └── client.js
 ```
 
-**3. 改 `lib/client.js` 顶部这一行**
+**3. 不用手改路径**
 
-```js
-const SCRATCH_DIR = "__DSH_BLANK_SESSION_DIR__";
-```
+`lib/client.js` 里保留的是占位符 `__DSH_BLANK_SESSION_DIR__`。DSH 启动、host 端插件被加载时，`lib/index.js` 会把真实路径烘焙进去并写回磁盘，所以**你不需要手动改任何路径**；`install.mjs` 做的是同一件事，两条路径都幂等。
 
-换成你的绝对路径，**用正斜杠、末尾不要带斜杠**：
-
-```js
-const SCRATCH_DIR = "C:/Users/you/dsh-blank-sessions";   // Windows
-const SCRATCH_DIR = "/home/you/dsh-blank-sessions";       // macOS / Linux
-```
-
-> 如果这一行没改，按钮会变红并显示 `SCRATCH_DIR is not configured`，不会静默失败。
-> 顺手可以改 `SCRATCH_TITLE`（侧边栏组名）和 `LABEL`（按钮文字）。
+想换目录，设环境变量 `DSH_BLANK_SESSION_DIR` 即可，不必改源码。界面文案在 `lib/client.js` 的 `SCRATCH_TITLE` / `LABEL` / `HINT` / `FAIL_LABEL` 四个常量里。
 
 **4. 注册 bundle**
 
@@ -96,12 +86,12 @@ const SCRATCH_DIR = "/home/you/dsh-blank-sessions";       // macOS / Linux
 ```json
 {
   "dependencies": {
-    "@local/dsh-one-click-new-session": "1.0.0"
+    "dsh-one-click-new-session": "1.1.5"
   },
   "dsh": {
     "profile": {
       "bundles": [
-        "@local/dsh-one-click-new-session"
+        "dsh-one-click-new-session"
       ]
     }
   }
@@ -132,7 +122,7 @@ const SCRATCH_DIR = "/home/you/dsh-blank-sessions";       // macOS / Linux
 | 现象 | 原因 / 处理 |
 | --- | --- |
 | 完全没有按钮 | ① 没重启 DSH；② `bundles` 没加；③ 侧边栏处于收起窄条（宿主隐藏整个底部动作区，展开即可）；④ profile 指错了 |
-| 按钮变红 `SCRATCH_DIR is not configured` | 没跑安装脚本，手动把第 3 步那行填好 |
+| 按钮变红 `Scratch directory unresolved` | 占位符没被替换：确认 `lib/index.js` 和 `lib/client.js` 在同一目录（host 端要读得到才能烘焙），或显式设 `DSH_BLANK_SESSION_DIR` |
 | 按钮变红 `Could not create scratch workspace` | 目录不存在或不可写；建好目录，或换到用户目录下 |
 | 能跳转但输入框禁用了 | 说明会话没挂上工作区；检查 `workspaces.create` 是否被权限拦住，见控制台错误 |
 | 启动报错 / 锁超时 | 强杀进程会留下 `.lock`，删掉 profile 下的 `*.lock` 再启动 |
